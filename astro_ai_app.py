@@ -14,169 +14,131 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CUSTOM CSS (Mobile Optimized) ====================
+# ==================== CUSTOM CSS ====================
 st.markdown("""
 <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    #MainMenu, footer, header {visibility: hidden;}
     
     .block-container {
-        padding-top: 1rem !important;
-        padding-bottom: 2rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+        padding: 1rem 1rem 2rem 1rem !important;
     }
     
     .main-header {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         font-weight: 800;
         background: linear-gradient(90deg, #7c3aed 0%, #2563eb 50%, #06b6d4 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-align: center;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.15rem;
         line-height: 1.2;
     }
     
     .sub-header {
         text-align: center;
         color: #64748b;
-        font-size: 0.9rem;
-        margin-bottom: 1.2rem;
+        font-size: 0.88rem;
+        margin-bottom: 1.1rem;
     }
     
     .planet-card {
         background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
         border: 1px solid #334155;
-        padding: 0.9rem 0.6rem;
+        padding: 0.85rem 0.5rem;
         border-radius: 14px;
         color: white;
         text-align: center;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.55rem;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
     }
     
-    .planet-name {
-        font-size: 0.95rem;
-        font-weight: 700;
-        margin-bottom: 0.3rem;
-        color: #a5b4fc;
-    }
-    
-    .planet-sign {
-        font-size: 1.15rem;
-        font-weight: 600;
-        margin: 0.2rem 0;
-    }
-    
-    .planet-degree {
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-    
-    .planet-nak {
-        font-size: 0.75rem;
-        color: #64748b;
-        margin-top: 0.25rem;
-    }
+    .planet-name { font-size: 0.92rem; font-weight: 700; color: #a5b4fc; margin-bottom: 0.25rem; }
+    .planet-sign { font-size: 1.1rem; font-weight: 600; margin: 0.15rem 0; }
+    .planet-degree { font-size: 0.82rem; color: #94a3b8; }
+    .planet-nak { font-size: 0.72rem; color: #64748b; margin-top: 0.2rem; }
     
     .signal-card {
-        padding: 1.2rem;
+        padding: 1.15rem;
         border-radius: 16px;
         color: white;
         text-align: center;
-        margin: 0.8rem 0;
+        margin: 0.7rem 0;
         box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
     }
     
-    .signal-bullish {
-        background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-    }
+    .signal-bullish { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    .signal-bearish { background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); }
+    .signal-neutral { background: linear-gradient(135deg, #475569 0%, #64748b 100%); }
     
-    .signal-bearish {
-        background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
-    }
-    
-    .signal-neutral {
-        background: linear-gradient(135deg, #475569 0%, #64748b 100%);
-    }
+    .day-bullish { background: #064e3b; border-left: 4px solid #10b981; padding: 0.6rem 0.8rem; border-radius: 8px; margin: 0.3rem 0; }
+    .day-bearish { background: #7f1d1d; border-left: 4px solid #ef4444; padding: 0.6rem 0.8rem; border-radius: 8px; margin: 0.3rem 0; }
+    .day-neutral { background: #1e293b; border-left: 4px solid #64748b; padding: 0.6rem 0.8rem; border-radius: 8px; margin: 0.3rem 0; }
     
     div[data-testid="stMetric"] {
         background: #1e293b;
         border: 1px solid #334155;
-        padding: 12px 16px;
+        padding: 10px 14px;
         border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
     
-    div[data-testid="stMetric"] label {
-        color: #94a3b8 !important;
-    }
-    
+    div[data-testid="stMetric"] label { color: #94a3b8 !important; }
     div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
         color: #f1f5f9 !important;
-        font-size: 1.3rem !important;
+        font-size: 1.25rem !important;
     }
     
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 6px;
-        overflow-x: auto;
-    }
-    
+    .stTabs [data-baseweb="tab-list"] { gap: 5px; overflow-x: auto; }
     .stTabs [data-baseweb="tab"] {
-        height: 42px;
+        height: 40px;
         white-space: nowrap;
         background-color: #1e293b;
         border-radius: 10px;
         color: #94a3b8;
-        padding: 0 14px;
-        font-size: 0.9rem;
+        padding: 0 12px;
+        font-size: 0.85rem;
     }
-    
     .stTabs [aria-selected="true"] {
         background: linear-gradient(90deg, #7c3aed, #2563eb) !important;
         color: white !important;
     }
     
-    .stButton > button {
-        width: 100%;
-        border-radius: 12px;
-        height: 3rem;
-        font-weight: 600;
-        background: linear-gradient(90deg, #7c3aed, #2563eb);
-        color: white;
-        border: none;
-    }
-    
-    section[data-testid="stSidebar"] {
-        background: #0f172a;
-    }
-    
-    .stApp {
-        background: #0f172a;
-    }
-    
-    h1, h2, h3, h4, p, span, label {
-        color: #e2e8f0 !important;
-    }
-    
-    .stAlert {
-        border-radius: 12px;
-    }
+    .stApp { background: #0f172a; }
+    h1, h2, h3, h4, p, span, label { color: #e2e8f0 !important; }
     
     .section-title {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: #a5b4fc !important;
-        margin: 1rem 0 0.6rem 0;
-        padding-bottom: 0.3rem;
+        margin: 0.9rem 0 0.5rem 0;
+        padding-bottom: 0.25rem;
         border-bottom: 2px solid #334155;
+    }
+    
+    .retro-badge {
+        background: #7f1d1d;
+        color: #fecaca;
+        padding: 0.35rem 0.7rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0.3rem 0;
+    }
+    
+    .direct-badge {
+        background: #064e3b;
+        color: #a7f3d0;
+        padding: 0.35rem 0.7rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0.3rem 0;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ==================== ASTROLOGY DATA ====================
+# ==================== DATA ====================
 
 PLANETS = {
     "Sun": swe.SUN,
@@ -190,9 +152,15 @@ PLANETS = {
 }
 
 SIGNS = [
-    "Aries ♈", "Taurus ♉", "Gemini ♊", "Cancer ♋",
-    "Leo ♌", "Virgo ♍", "Libra ♎", "Scorpio ♏",
-    "Sagittarius ♐", "Capricorn ♑", "Aquarius ♒", "Pisces ♓"
+    "Mesh ♈", "Vrishabh ♉", "Mithun ♊", "Kark ♋",
+    "Simha ♌", "Kanya ♍", "Tula ♎", "Vrishchik ♏",
+    "Dhanu ♐", "Makar ♑", "Kumbh ♒", "Meen ♓"
+]
+
+SIGNS_EN = [
+    "Aries", "Taurus", "Gemini", "Cancer",
+    "Leo", "Virgo", "Libra", "Scorpio",
+    "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ]
 
 NAKSHATRAS = [
@@ -208,17 +176,19 @@ NAKSHATRAS = [
 def get_julian_day(dt):
     return swe.julday(dt.year, dt.month, dt.day, dt.hour + dt.minute / 60.0)
 
-def get_planet_position(jd, planet_id):
-    result, _ = swe.calc_ut(jd, planet_id)
-    return result[0]
+def get_planet_data(jd, planet_id):
+    result, ret = swe.calc_ut(jd, planet_id)
+    lon = result[0]
+    speed = result[3]
+    return lon, speed
 
 def longitude_to_sign(lon):
-    sign_num = int(lon // 30)
+    sign_num = int(lon // 30) % 12
     degree = lon % 30
-    return SIGNS[sign_num], degree, sign_num
+    return SIGNS[sign_num], SIGNS_EN[sign_num], degree, sign_num
 
 def get_nakshatra(lon):
-    nak_num = int((lon % 360) / (360 / 27))
+    nak_num = int((lon % 360) / (360 / 27)) % 27
     pada = int(((lon % 360) % (360 / 27)) / (360 / 108)) + 1
     return NAKSHATRAS[nak_num], pada
 
@@ -227,35 +197,32 @@ def calculate_planets(date_time):
     positions = {}
     
     for name, planet_id in PLANETS.items():
-        lon = get_planet_position(jd, planet_id)
+        lon, speed = get_planet_data(jd, planet_id)
         
         if name == "Rahu":
             ketu_lon = (lon + 180) % 360
-            sign, deg, _ = longitude_to_sign(ketu_lon)
+            sign_hi, sign_en, deg, _ = longitude_to_sign(ketu_lon)
             nak, pada = get_nakshatra(ketu_lon)
             positions["Ketu"] = {
-                "longitude": ketu_lon,
-                "sign": sign,
-                "degree": deg,
-                "nakshatra": nak,
-                "pada": pada
+                "longitude": ketu_lon, "sign": sign_hi, "sign_en": sign_en,
+                "degree": deg, "nakshatra": nak, "pada": pada, "speed": 0, "retro": False
             }
         
-        sign, deg, _ = longitude_to_sign(lon)
+        sign_hi, sign_en, deg, _ = longitude_to_sign(lon)
         nak, pada = get_nakshatra(lon)
+        is_retro = speed < 0 if name not in ["Sun", "Moon", "Rahu"] else False
+        
         positions[name] = {
-            "longitude": lon,
-            "sign": sign,
-            "degree": deg,
-            "nakshatra": nak,
-            "pada": pada
+            "longitude": lon, "sign": sign_hi, "sign_en": sign_en,
+            "degree": deg, "nakshatra": nak, "pada": pada,
+            "speed": speed, "retro": is_retro
         }
     
     return positions
 
 def get_major_aspects(positions):
     aspects = []
-    planet_list = list(positions.keys())
+    planet_list = [p for p in positions.keys() if p != "Ketu"]
     
     aspect_types = {
         0: ("Conjunction ☌", 8),
@@ -276,10 +243,8 @@ def get_major_aspects(positions):
             for angle, (name, orb) in aspect_types.items():
                 if abs(diff - angle) <= orb:
                     aspects.append({
-                        "planet1": p1,
-                        "planet2": p2,
-                        "aspect": name,
-                        "orb": round(abs(diff - angle), 1)
+                        "planet1": p1, "planet2": p2,
+                        "aspect": name, "orb": round(abs(diff - angle), 1)
                     })
     return aspects
 
@@ -287,23 +252,27 @@ def get_astro_signal(positions, aspects):
     score = 0
     reasons = []
     
-    moon_sign = positions["Moon"]["sign"]
-    if any(x in moon_sign for x in ["Cancer", "Taurus", "Pisces", "Leo"]):
+    moon_sign = positions["Moon"]["sign_en"]
+    if moon_sign in ["Cancer", "Taurus", "Pisces", "Leo", "Sagittarius"]:
         score += 1
-        reasons.append("Moon supportive sign mein hai")
-    elif any(x in moon_sign for x in ["Scorpio", "Capricorn", "Aquarius"]):
+        reasons.append("Moon supportive sign mein hai (positive mood)")
+    elif moon_sign in ["Scorpio", "Capricorn", "Aquarius", "Virgo"]:
         score -= 1
         reasons.append("Moon challenging sign mein hai")
+    
+    if positions["Mercury"]["retro"]:
+        score -= 2
+        reasons.append("⚠️ Mercury Retrograde chal raha hai (confusion / delays)")
     
     for asp in aspects:
         planets = [asp["planet1"], asp["planet2"]]
         if "Jupiter" in planets:
             if "Trine" in asp["aspect"] or "Sextile" in asp["aspect"]:
                 score += 2
-                reasons.append(f"Jupiter {asp['aspect']} → Positive expansion")
+                reasons.append(f"Jupiter {asp['aspect']} → Expansion positive")
             elif "Square" in asp["aspect"] or "Opposition" in asp["aspect"]:
                 score -= 1
-                reasons.append(f"Jupiter {asp['aspect']} → Caution needed")
+                reasons.append(f"Jupiter {asp['aspect']} → Caution")
         
         if "Saturn" in planets:
             if "Square" in asp["aspect"] or "Opposition" in asp["aspect"]:
@@ -312,13 +281,67 @@ def get_astro_signal(positions, aspects):
             elif "Trine" in asp["aspect"]:
                 score += 1
                 reasons.append(f"Saturn {asp['aspect']} → Disciplined growth")
+        
+        if "Mars" in planets and ("Square" in asp["aspect"] or "Opposition" in asp["aspect"]):
+            score -= 1
+            reasons.append(f"Mars {asp['aspect']} → Volatility possible")
     
-    if score >= 2:
-        return "BULLISH", "🟢", score, reasons
+    if not positions["Venus"]["retro"]:
+        score += 0.5
+    
+    if score >= 2.5:
+        return "BULLISH", "🟢", round(score, 1), reasons
     elif score <= -2:
-        return "BEARISH", "🔴", score, reasons
+        return "BEARISH", "🔴", round(score, 1), reasons
     else:
-        return "NEUTRAL", "🟡", score, reasons
+        return "NEUTRAL", "🟡", round(score, 1), reasons
+
+def get_upcoming_bias(days=10):
+    results = []
+    base = datetime.now()
+    
+    for i in range(days):
+        dt = base + timedelta(days=i)
+        dt_utc = dt - timedelta(hours=5, minutes=30)
+        pos = calculate_planets(dt_utc)
+        asp = get_major_aspects(pos)
+        signal, emoji, score, _ = get_astro_signal(pos, asp)
+        
+        results.append({
+            "date": dt.strftime("%d %b %Y"),
+            "day": dt.strftime("%A"),
+            "signal": signal,
+            "emoji": emoji,
+            "score": score,
+            "mercury_retro": pos["Mercury"]["retro"]
+        })
+    
+    return results
+
+def get_birth_analysis(dob):
+    dt = datetime.combine(dob, datetime.min.time()) + timedelta(hours=12)
+    pos = calculate_planets(dt)
+    
+    moon_sign = pos["Moon"]["sign"]
+    sun_sign = pos["Sun"]["sign"]
+    moon_nak = pos["Moon"]["nakshatra"]
+    
+    analysis = []
+    analysis.append(f"**Janma Rashi (Moon Sign):** {moon_sign}")
+    analysis.append(f"**Surya Rashi:** {sun_sign}")
+    analysis.append(f"**Janma Nakshatra:** {moon_nak} (Pada {pos['Moon']['pada']})")
+    
+    moon_en = pos["Moon"]["sign_en"]
+    if moon_en in ["Cancer", "Pisces", "Scorpio"]:
+        analysis.append("Swabhav: Emotional & Intuitive trader ho sakte ho")
+    elif moon_en in ["Aries", "Leo", "Sagittarius"]:
+        analysis.append("Swabhav: Aggressive & Risk-taking tendency")
+    elif moon_en in ["Taurus", "Virgo", "Capricorn"]:
+        analysis.append("Swabhav: Practical & Patient approach better rehta hai")
+    else:
+        analysis.append("Swabhav: Balanced & Analytical approach suitable")
+    
+    return analysis, pos
 
 @st.cache_data(ttl=300)
 def get_market_data(symbol, period="3mo"):
@@ -359,7 +382,7 @@ def create_candlestick(df, title):
 
 def main():
     st.markdown('<h1 class="main-header">🪐 Astro AI</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Share Bazaar • Financial Astrology</p>', unsafe_allow_html=True)
+    st.markdown('<p class="sub-header">Share Bazaar • Financial Astrology • हिंदी</p>', unsafe_allow_html=True)
     
     with st.sidebar:
         st.markdown("### ⚙️ Settings")
@@ -371,30 +394,36 @@ def main():
         dt_utc = dt - timedelta(hours=5, minutes=30)
         
         st.divider()
+        st.markdown("### 🎂 Janam Kundali")
+        dob = st.date_input("Apni Date of Birth", value=datetime(1995, 1, 1).date())
+        
+        st.divider()
         
         market_option = st.selectbox(
             "📊 Market",
-            ["Nifty 50", "Bank Nifty", "Sensex", "Reliance", "TCS", "HDFC Bank", "Custom"]
+            ["Nifty 50", "Bank Nifty", "Finnifty", "Sensex", "Reliance", "TCS", "HDFC Bank", "Gold", "Custom"]
         )
         
         symbol_map = {
             "Nifty 50": "^NSEI",
             "Bank Nifty": "^NSEBANK",
+            "Finnifty": "NIFTY_FIN_SERVICE.NS",
             "Sensex": "^BSESN",
             "Reliance": "RELIANCE.NS",
             "TCS": "TCS.NS",
-            "HDFC Bank": "HDFCBANK.NS"
+            "HDFC Bank": "HDFCBANK.NS",
+            "Gold": "GC=F"
         }
         
         if market_option == "Custom":
             symbol = st.text_input("Symbol", "INFY.NS")
         else:
-            symbol = symbol_map[market_option]
+            symbol = symbol_map.get(market_option, "^NSEI")
         
         period = st.selectbox("Chart Period", ["1mo", "3mo", "6mo", "1y"], index=1)
         
         st.divider()
-        st.caption("⚠️ Educational purpose only. Not financial advice.")
+        st.caption("⚠️ Sirf educational purpose ke liye. Financial advice nahi hai.")
     
     positions = calculate_planets(dt_utc)
     aspects = get_major_aspects(positions)
@@ -404,18 +433,25 @@ def main():
     with m1:
         st.metric("Date", selected_date.strftime("%d %b %Y"))
     with m2:
-        st.metric("Moon", positions["Moon"]["sign"].split()[0])
+        st.metric("Moon", positions["Moon"]["sign"])
     
     m3, m4 = st.columns(2)
     with m3:
         st.metric("Astro Signal", f"{emoji} {signal}")
     with m4:
-        st.metric("Score", f"{score:+d}")
+        st.metric("Score", f"{score:+}")
     
-    tab1, tab2, tab3, tab4 = st.tabs(["🪐 Planets", "📊 Chart", "🔮 Analysis", "ℹ️ Info"])
+    if positions["Mercury"]["retro"]:
+        st.markdown('<div class="retro-badge">⚠️ Mercury RETROGRADE chal raha hai</div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<div class="direct-badge">✅ Mercury Direct hai</div>', unsafe_allow_html=True)
+    
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "🪐 Planets", "📅 Timing", "📊 Chart", "🎂 Kundali", "ℹ️ Info"
+    ])
     
     with tab1:
-        st.markdown('<p class="section-title">Planetary Positions</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-title">Graha Sthiti (Planetary Positions)</p>', unsafe_allow_html=True)
         
         planet_order = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Rahu", "Ketu"]
         cols = st.columns(3)
@@ -423,10 +459,11 @@ def main():
         for idx, planet in enumerate(planet_order):
             if planet in positions:
                 pos = positions[planet]
+                retro_tag = " ℞" if pos.get("retro") else ""
                 with cols[idx % 3]:
                     st.markdown(f"""
                     <div class="planet-card">
-                        <div class="planet-name">{planet}</div>
+                        <div class="planet-name">{planet}{retro_tag}</div>
                         <div class="planet-sign">{pos['sign']}</div>
                         <div class="planet-degree">{pos['degree']:.1f}°</div>
                         <div class="planet-nak">{pos['nakshatra']} (P{pos['pada']})</div>
@@ -434,14 +471,43 @@ def main():
                     """, unsafe_allow_html=True)
         
         if aspects:
-            st.markdown('<p class="section-title">Major Aspects</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section-title">Mukhya Drishti (Major Aspects)</p>', unsafe_allow_html=True)
             for asp in aspects[:8]:
                 st.markdown(f"**{asp['planet1']}** {asp['aspect']} **{asp['planet2']}**  \n`Orb: {asp['orb']}°`")
     
     with tab2:
-        st.markdown(f'<p class="section-title">{market_option}</p>', unsafe_allow_html=True)
+        st.markdown('<p class="section-title">Aane Wale Dinon Ka Astro Timing</p>', unsafe_allow_html=True)
+        st.caption("Agle 10 din ka Bullish / Bearish / Neutral outlook")
         
-        with st.spinner("Loading market data..."):
+        upcoming = get_upcoming_bias(10)
+        
+        for day in upcoming:
+            css_class = {
+                "BULLISH": "day-bullish",
+                "BEARISH": "day-bearish",
+                "NEUTRAL": "day-neutral"
+            }[day["signal"]]
+            
+            retro_text = " | ⚠️ Merc Retro" if day["mercury_retro"] else ""
+            
+            st.markdown(f"""
+            <div class="{css_class}">
+                <b>{day['date']}</b> ({day['day']}) — {day['emoji']} <b>{day['signal']}</b>
+                &nbsp;&nbsp; Score: {day['score']:+}{retro_text}
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.divider()
+        st.markdown("**Summary:**")
+        bull = sum(1 for d in upcoming if d["signal"] == "BULLISH")
+        bear = sum(1 for d in upcoming if d["signal"] == "BEARISH")
+        neut = sum(1 for d in upcoming if d["signal"] == "NEUTRAL")
+        st.write(f"🟢 Bullish din: **{bull}** | 🔴 Bearish din: **{bear}** | 🟡 Neutral din: **{neut}**")
+    
+    with tab3:
+        st.markdown(f'<p class="section-title">{market_option} Chart</p>', unsafe_allow_html=True)
+        
+        with st.spinner("Market data load ho raha hai..."):
             df = get_market_data(symbol, period)
         
         if df is not None and not df.empty:
@@ -454,7 +520,7 @@ def main():
             c1.metric("Price", f"₹{current:,.1f}", f"{change:+.1f} ({pct:+.2f}%)")
             c2.metric("Volume", f"{df['Volume'].iloc[-1]/1e6:.1f}M")
             
-            fig = create_candlestick(df, f"{market_option}")
+            fig = create_candlestick(df, market_option)
             st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
             
             rets = df['Close'].pct_change().dropna()
@@ -464,81 +530,37 @@ def main():
         else:
             st.error("Data load nahi hua. Symbol check karein.")
     
-    with tab3:
-        st.markdown('<p class="section-title">Astro Market Bias</p>', unsafe_allow_html=True)
+    with tab4:
+        st.markdown('<p class="section-title">Aapki Janam Kundali (Basic)</p>', unsafe_allow_html=True)
         
-        signal_class = {
-            "BULLISH": "signal-bullish",
-            "BEARISH": "signal-bearish",
-            "NEUTRAL": "signal-neutral"
-        }[signal]
+        analysis, birth_pos = get_birth_analysis(dob)
         
-        st.markdown(f"""
-        <div class="signal-card {signal_class}">
-            <div style="font-size:2rem;">{emoji}</div>
-            <div style="font-size:1.5rem; font-weight:700; margin:0.3rem 0;">{signal}</div>
-            <div style="opacity:0.9;">Score: {score:+d}</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        if reasons:
-            st.markdown("**Reasons:**")
-            for r in reasons:
-                st.markdown(f"• {r}")
-        else:
-            st.info("Koi strong aspect nahi dikha.")
+        for line in analysis:
+            st.markdown(f"- {line}")
         
         st.divider()
+        st.markdown("**Janam ke samay ke mukhya Grah:**")
         
-        st.markdown('<p class="section-title">Key Planets</p>', unsafe_allow_html=True)
+        cols = st.columns(3)
+        for idx, planet in enumerate(["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter"]):
+            if planet in birth_pos:
+                pos = birth_pos[planet]
+                with cols[idx % 3]:
+                    st.markdown(f"""
+                    <div class="planet-card">
+                        <div class="planet-name">{planet}</div>
+                        <div class="planet-sign">{pos['sign']}</div>
+                        <div class="planet-nak">{pos['nakshatra']}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
         
-        moon = positions["Moon"]
-        jup = positions["Jupiter"]
-        sat = positions["Saturn"]
-        
-        st.markdown(f"""
-        **Moon** → {moon['sign']} ({moon['degree']:.1f}°)  
-        Nakshatra: {moon['nakshatra']} Pada {moon['pada']}  
-        *Short-term market mood*
-        
-        **Jupiter** → {jup['sign']} ({jup['degree']:.1f}°)  
-        *Expansion & optimism*
-        
-        **Saturn** → {sat['sign']} ({sat['degree']:.1f}°)  
-        *Discipline & restriction*
-        
-        **Rahu-Ketu** → {positions['Rahu']['sign']} / {positions['Ketu']['sign']}  
-        *Turning points axis*
-        """)
-        
-        st.warning("Yeh analysis educational hai. Trading decision apni zimmedari par lein.")
+        st.info("Yeh basic analysis hai. Poori kundali ke liye exact birth time aur place chahiye.")
     
-    with tab4:
-        st.markdown('<p class="section-title">About This App</p>', unsafe_allow_html=True)
+    with tab5:
+        st.markdown('<p class="section-title">App ke baare mein</p>', unsafe_allow_html=True)
         
         st.markdown("""
-        Yeh **Astro AI** prototype hai jo:
+        Yeh **Astro AI** prototype hai jisme:
         
-        - Planetary positions calculate karta hai
-        - Major aspects dhundhta hai
-        - Simple market bias generate karta hai
-        - Live stock/index charts dikhata hai
-        
-        ### Technology
-        - Swiss Ephemeris
-        - Yahoo Finance
-        - Streamlit + Plotly
-        
-        ### Future Ideas
-        - Birth chart integration
-        - Mercury retrograde detection
-        - Historical backtesting
-        - AI Chat analysis
-        - Telegram alerts
-        
-        ---
-        **Made for learning** | Not financial advice
-        """)
-
-if __name__ == "__main__":
-    main()
+        - Graha sthiti aur Nakshatra
+        - Mercury Retrograde dete
